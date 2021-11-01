@@ -99,3 +99,122 @@ message IntervalQuantityGroup{
 }
 
 // shoud change the unit type to enum
+
+
+message UncertainQuantity {
+  int32 id = 1;
+  string name = 2;
+  string unit = 5;
+  double value = 10;
+  double probability = 12;
+}
+
+message UncertainBasicQuantity {
+  int32 id = 1;
+  string name = 2;
+  BasicQuantity basic_quantity = 5;
+  double probability = 7;
+}
+
+message UncertainQuantityGroup {
+  // The usage of UncertainQuantityGroup is similar to the DiscreteUncertaintyGroup
+  int32 id = 1;
+  string name = 2;
+  string unit = 5;
+  repeated UncertainQuantity uncertain_quantitys = 10;
+  repeated UncertainBasicQuantity uncertain_basic_quantitys = 12;
+}
+
+message DiscreteUncertaintyGroup {
+  int32 id = 1;
+  string name = 2;
+  string unit = 5;
+  repeated double values = 7;
+  repeated double probabilitys = 9;
+}
+
+message BasicStatistic {
+  int32 id = 1;
+  string name = 2;
+  string unit = 4;
+  double mean_val = 5;
+  double variance = 7;
+  double max_val = 9;
+  double min_val = 10;
+  repeated Quantile quantiles = 12;
+}
+
+message Quantile {
+  int32 id = 1;
+  string name = 2;
+  int32 quantile_index = 5;
+  int32 quantiles_total_count = 7;
+  double quantile_value = 9;
+    // what esle should be here ?
+}
+
+message BasicStatisticGroup {
+  //  this one might not be needed!
+  int32 id = 1;
+  string name = 2;
+  string unit = 4;
+  repeated BasicStatistic uncertaintys = 6;
+}
+
+message Uncertainty {
+  int32 id = 1;
+  string name = 2;
+  BasicStatistic basic_statistic = 5;
+  DiscreteUncertaintyGroup discrete_uncertainty = 7;
+  UncertainQuantityGroup uncertain_quantity_group = 9;
+}
+
+message UncertaintyInterval {
+  int32 id = 1;
+  string name = 2;
+  Uncertainty uncertainty = 6;
+  Interval interval = 7;
+}
+
+message UncertaintyIntervalGroup {
+  int32 id = 1;
+  string name = 2;
+  repeated UncertaintyInterval uncertainty_intervals = 7;
+}
+
+message UncertaintyGroupIntervals {
+  int32 id = 1;
+  string name = 2;
+  repeated Uncertainty uncertaintys = 6;
+  repeated Interval intervals = 8;
+}
+
+message UncertainScenario {
+  int32 id = 1;
+  string name = 2;
+  BasicQuantityGroup scenario_value = 5;
+  double probability = 12;
+}
+
+message BasicScenario {
+  int32 id = 1;
+  string name = 2;
+  string unit = 5;
+  repeated double values = 7;
+  double probability = 9;
+}
+
+message UncertainScenarioGroup {
+  int32 id = 1;
+  string name = 2;
+  repeated UncertainScenario scenarios = 5;
+}
+
+message BasicValueProbabilityGroup {
+  // this one probably not used
+  int32 id = 1;
+  string name = 2;
+  string unit = 5;
+  repeated double values = 7;
+  repeated double probabilitys = 9;
+} 
