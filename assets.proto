@@ -1,9 +1,9 @@
 syntax = "proto3";
 package genesys;
 
-import "api/intervals.proto";
+import "intervals.proto";
 // import "api/asset_groups.proto";
-import "api/service_catalogue.proto";
+import "service_catalogue.proto";
 
 
 message Asset {

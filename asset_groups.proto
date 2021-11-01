@@ -1,8 +1,8 @@
 syntax = "proto3";
 package genesys;
 
-import "api/intervals.proto";
-import "api/assets.proto";
+import "intervals.proto";
+import "assets.proto";
 
 message AssetGroup {
     int32 id = 1;

@@ -1,4 +1,4 @@
 syntax = "proto3";
 package genesys;
 
-import "api/asset_groups.proto";
+import "asset_groups.proto";
