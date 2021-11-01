@@ -2,3 +2,52 @@ syntax = "proto3";
 package genesys;
 
 import "asset_groups.proto";
+import "assets.proto";
+import "service_catalogue.proto";
+import "intervals.proto";
+
+service GenModelService {
+    rpc OptimizeAsset(GenModelRequest) returns (GenSolutionResponse) {};
+}
+
+message GenModelRequest {
+    int32 id = 1;
+    string name = 2;
+    ModelConfig model_configuration = 5; 
+    repeated Asset asstes = 6;
+    repeated AssetGroup asset_groups = 7;
+    ServiceCatalogue service_catalogue = 9;
+    PreDefined predefined = 11;
+}
+
+message GenSolutionResponse {
+    int32 id = 1;
+    string name = 2;
+    repeated Asset asstes = 5;
+    repeated AssetGroup asset_groups = 7;
+}
+
+message ModelConfig {
+    enum Solver {
+        UNSET = 0;
+        GOLAP = 1;
+        CBC = 2;
+        GLPK = 3;
+    }
+    enum ResponseType {
+        SHORT = 0;
+        FULL = 1;
+        // other types of responses? dual variables?
+    }
+    Solver solver = 3;
+    IntervalGroup horizon = 5;
+    ResponseType response_type = 7;
+
+}
+
+message PreDefined {
+    int32 id = 1;
+    string name = 2;
+    repeated Asset asstes = 5;
+    repeated AssetGroup asset_groups = 7;
+}

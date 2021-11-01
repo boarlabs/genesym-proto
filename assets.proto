@@ -11,6 +11,7 @@ message Asset {
     string name = 2;
     int32  connection_point_id = 5;   // a physical type asset-group
     Battery battery = 9 ;
+    AssetOutput asset_output = 11;
 }
 
 message AssetEnergy {
@@ -20,6 +21,8 @@ message AssetEnergy {
 
 message AssetOutput {
 // again should we place the outputs under assets and then differentiate based on tech?
+    AssetEconomic asset_economic = 5;
+    BatteryOutput battery_output = 7;
 }
 
 message Battery {
@@ -91,6 +94,10 @@ message BatteryDegradation {
     BasicQuantity cycling_limit = 5;
 }
 
+message BatteryOutput {
+    repeated BatteryInterval battery_intervals = 5;
+}
+
 message BatteryInterval {
     int32 id = 1;
     string name = 2;
@@ -147,3 +154,18 @@ message LocalCustomPrice {
     // resource_price_capacity
     // resource_price_custom
 }
+
+message AssetEconomic {
+    int32 id = 1;
+    string name = 2;
+    repeated CostRevenue expenses = 5;
+    repeated CostRevenue revenues = 6;
+
+}
+
+message CostRevenue {
+    int32 id = 1;
+    string name = 2;
+    EconomicsPrice economics_price = 5;
+    int32 economics_price_id = 7;
+} 
