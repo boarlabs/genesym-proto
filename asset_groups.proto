@@ -32,7 +32,7 @@ message AssetGroupOperationLimit {
     IntervalQuantityGroup import_max_power = 5;
     IntervalQuantityGroup export_max_power = 6;
     IntervalQuantityGroup import_min_power = 7;
-    IntervalQuantityGroup export_min_power = 6;
+    IntervalQuantityGroup export_min_power = 8;
 
     BasicQuantity import_max_energy = 9;
     BasicQuantity export_max_energy = 10;
